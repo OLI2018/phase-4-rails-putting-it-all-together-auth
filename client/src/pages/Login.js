@@ -2,14 +2,14 @@ import { useState } from "react";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
-import { Button } from "../styles";
+import { Button} from "../styles";
 
 function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
     <Wrapper>
-      <Logo>Reciplease</Logo>
+      <Logo>Coffee Lovers</Logo>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
@@ -40,7 +40,8 @@ function Login({ onLogin }) {
 const Logo = styled.h1`
   font-family: "Permanent Marker", cursive;
   font-size: 3rem;
-  color: deeppink;
+  // color: deeppink;
+  color: #ed7966;
   margin: 8px 0 16px;
 `;
 

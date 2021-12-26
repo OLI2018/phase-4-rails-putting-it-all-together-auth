@@ -5,18 +5,20 @@ import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewRecipe({ user }) {
-  const [title, setTitle] = useState("My Awesome Recipe");
-  const [minutesToComplete, setMinutesToComplete] = useState("30");
+  const [title, setTitle] = useState("Be Your Own Barista");
+  const [minutesToComplete, setMinutesToComplete] = useState("10");
+  const [rating, setRating] = useState("0");
   const [instructions, setInstructions] = useState(`Here's how you make it.
   
-## Ingredients
+## Ingredients:
 
-- 1c Sugar
-- 1c Spice
+- 1 cup milk
+- 0.5 cup cold brewed coffee
+- 0.25 cup chocolate syrup (optional)
 
-## Instructions
+## Directions:
 
-**Mix** sugar and spice. _Bake_ for 30 minutes.
+**Mix** milk, coffee, and sweetener together in a glass until sweetener is dissolved. Enjoy your coffee!
   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +36,7 @@ function NewRecipe({ user }) {
         title,
         instructions,
         minutes_to_complete: minutesToComplete,
+        rating: rating,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -68,6 +71,19 @@ function NewRecipe({ user }) {
               onChange={(e) => setMinutesToComplete(e.target.value)}
             />
           </FormField>
+
+          <FormField>
+            <Label htmlFor="rating">Rating</Label>
+            <Input
+              type="number"
+              id="rating"
+              max="5"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+            />
+          </FormField>
+
+
           <FormField>
             <Label htmlFor="instructions">Instructions</Label>
             <Textarea
@@ -94,8 +110,9 @@ function NewRecipe({ user }) {
         <p>
           <em>Time to Complete: {minutesToComplete} minutes</em>
           &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
+          <cite>By <b>{user.username}</b></cite>
         </p>
+        <p>Rating: {rating} ★★★★★ </p>
         <ReactMarkdown>{instructions}</ReactMarkdown>
       </WrapperChild>
     </Wrapper>
